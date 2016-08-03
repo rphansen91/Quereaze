@@ -1,5 +1,5 @@
 QUEREAZE
---------
+========
 
 Easily build UI's that query endpoints with `memoized` parameters.
 This makes it trivial to create complex search IO's with out of the box
