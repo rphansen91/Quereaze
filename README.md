@@ -1,8 +1,8 @@
 QUEREAZE
 ========
 
-Easily build UI's that query endpoints with `memoized` parameters.
-This makes it trivial to create complex search IO's with out of the box
+Easily build UI's that query endpoints with *memoized* parameters.
+This makes it trivial to create complex search *IO's* with out of the box
 advanced features such as `Undo, History, and Abort Http Request Logic`
 
 USAGE
