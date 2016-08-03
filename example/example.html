@@ -1,0 +1,16 @@
+<h1>Antengo Quereaze</h1>
+<!-- TYPE and QUEREAZE ATTRIBUTES REQUIRED -->
+<!-- USE quereaze="keyName" to add editing capabilities to params -->
+<!-- USE type="text" for defaultValue: "" -->
+<!-- USE type="number" for defaultValue: 0 -->
+<div class="antControls">
+<input type="text"   quereaze="q" placeholder="What are you looking for?">
+<input type="number" quereaze="minPrice" placeholder="Minimum Price">
+<input type="number" quereaze="maxPrice" placeholder="Maximum Price">
+<input type="number" quereaze="categoryGroupId" placeholder="Category Id">
+
+<!-- OPTIONAL -->
+<!--  -->
+<button quereaze-submit>Submit</button>
+<!-- IF NO 'quereaze-submit' ELEMENT FOUND ONLY ON-ENTER EVENTS WILL FIRE QUERIES -->
+</div>
