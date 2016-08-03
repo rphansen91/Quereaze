@@ -8,7 +8,7 @@
   "scripts": {
     "test": "NODE_ENV=test && mocha './src/**/*.spec.js' --compilers js:babel-core/register",
     "start": "webpack-dev-server",
-    "build": "rm -Rf dist && NODE_ENV=release webpack"
+    "build": "rm -Rf dist && NODE_ENV=production webpack"
   },
   "dependencies": {
     "rxjs": "^5.0.0-beta.10"

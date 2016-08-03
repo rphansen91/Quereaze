@@ -36,7 +36,7 @@ var config = {
 }
 
 if (process.env.NODE_ENV == "production") {
-    config.entry = "./src/main.js";
+    config.entry = "./src/main.ts";
     config.externals = {
         'rxjs': 'rxjs'
     };
