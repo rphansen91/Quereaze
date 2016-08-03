@@ -10,7 +10,7 @@ USAGE
 
 `npm install quereaze -S`
 
-main.js
+> main.js
 
     import { RenderQuereaze } from 'quereaze'
 
@@ -24,7 +24,8 @@ main.js
         // but with updated data provided in template.html
         return {
             method: "POST"|"GET"|"PUT"|"DELETE",
-            url: 
+            url: ENDPOINT,
+            body: newParams
         }
     }
 
@@ -34,7 +35,8 @@ main.js
         DEFAULT_PARAMS,
         onHttpCallback
     )
-
+    
+    // REQUESTS WONT FIRE UNTIL CALLBACK SUPPLIED
     renderedQuereaze(function (response) {
         // IF SUCCESSFUL SAVE PARAMS
         response.quereaze.save()
@@ -44,3 +46,24 @@ main.js
         // THROUGH THE DATA KEY
         console.log(response.data)
     })
+
+> template.html
+
+    <!-- Specify editable params using attribute quereaze="{{paramKey}}" -->
+    <!-- Use  type="text" if typeof defaultValue=string -->
+    <input type="text" quereaze="{{paramKey}}" />
+    <!-- Use  type="text" if typeof defaultValue=number -->
+    <input type="text" quereaze="{{paramKey}}" />
+    <!-- Use  type="text" if typeof defaultValue=boolean -->
+    <input type="text" quereaze="{{paramKey}}" />
+    <button>Submit</button>
+
+IMPORTANT
+---------
+
+If the defaultValues specified do not match the defaultValues of the types 
+found in the template an error will be thrown. This can be resolved by specifying 
+the correct input type.
+
+If allowed input types do not specify your needs then custom param relegations can
+be made in the onHttpCallback handler
