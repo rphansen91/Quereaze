@@ -1,6 +1,13 @@
-Easily build **IO UI's** that utilize `Undo, History, and Abort Http Request Logic`.
-Simple html syntax combined with declaritive typing allow the library to keep
-a running **memoized** history of parameters.
+Quereaze
+
+> Easily build **IO UI's** that utilize `Undo, History, and Abort Http Request Logic`.
+> Simple html syntax combined with declaritive typing allow the library to keep a
+> **memoized** history of parameters.
+
+[DEMO: https://rphansen91.github.io/Quereaze/](https://rphansen91.github.io/Quereaze/)
+-----------------------------------------------
+[GITHUB: https://github.com/rphansen91/Quereaze](https://rphansen91.github.io/Quereaze/)
+-----------------------------------------------
 
 USAGE
 -----
@@ -26,11 +33,13 @@ USAGE
         }
     }
 
+    // IF onXhrReqCb IS NOT SPECIFIED 
+    // PARAMS WILL BE RETURNED INSTEAD
     RenderQuereaze({
         root: document.getElementById("root"),
         template: require("./template.html"),
         defaults: DEFAULT_PARAMS,
-        onXhrReqCb: onXhrReqCb // IF THIS IS NOT SPECIFIED PARAMS WILL BE RETURNED INSTEAD
+        onXhrReqCb: onXhrReqCb
     )(({ data, quereaze }) => {
         // IF SUCCESSFUL SAVE PARAMS
         quereaze.save()
@@ -39,6 +48,7 @@ USAGE
         // THE JSON RESPONSE IS ACCESSIBLE THROUGH THE DATA
         console.log(data)
     })
+
 
 > template.html
 
@@ -50,6 +60,8 @@ USAGE
     <!-- Use  type="text" if typeof defaultValue=boolean -->
     <input type="text" quereaze="paramKey" />
     <button>Submit</button>
+
+
 
 IMPORTANT
 ---------
