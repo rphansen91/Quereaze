@@ -3,8 +3,8 @@
 > Simple html syntax combined with declaritive typing allow the library to keep a
 > **memoized** history of parameters.
 
-![EXAMPLE]()
------------
+![DEMO](https://rphansen91.github.io/Quereaze/)
+-----------------------------------------------
 
 USAGE
 -----
