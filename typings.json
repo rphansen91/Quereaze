@@ -1,7 +1,9 @@
 {
   "globalDependencies": {
     "core-js": "registry:dt/core-js#0.0.0+20160602141332",
-    "jasmine": "registry:dt/jasmine#2.2.0+20160621224255",
-    "node": "registry:dt/node#6.0.0+20160621231320"
+    "node": "registry:dt/node#6.0.0+20160621231320",
+    "mocha": "github:DefinitelyTyped/DefinitelyTyped/mocha/mocha.d.ts#5d0f2126c8dac8fce0ff020218aea06607213b0d",
+    "assertion-error": "github:DefinitelyTyped/DefinitelyTyped/assertion-error/assertion-error.d.ts#5d0f2126c8dac8fce0ff020218aea06607213b0d",
+    "chai": "github:DefinitelyTyped/DefinitelyTyped/chai/chai.d.ts#5d0f2126c8dac8fce0ff020218aea06607213b0d"
   }
 }

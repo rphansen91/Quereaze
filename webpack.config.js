@@ -5,7 +5,7 @@ var config = {
     output: {
         path: "./dist",
         filename: "main.js",
-        libraryTarget: 'umd'
+        libraryTarget: 'commonjs'
     },
     devServer: {
         port: 3030
