@@ -7,47 +7,15 @@ var helpers = {
     currentType: currentType,
 
     star: {        
-        template: starTemplate(),
         defaults: starDefaults(),
     },
 
     search: {
-        template: searchTemplate(),
         defaults: searchDefaults(),
     }
 
 }
 
-function starTemplate () {
-    return '<h1>Star Wars Quereaze</h1>' +
-            '<div class="sWarsControls">' +
-                '<div class="check">' +
-                    '<input type="checkbox" quereaze="people">' +
-                    '<label>People</label>' +
-                '</div>' +
-                '<div class="check">' +
-                    '<input type="checkbox" quereaze="films">' +
-                    '<label>Films</label>' +
-                '</div>' +
-                '<div class="check">' +
-                    '<input type="checkbox" quereaze="planets">' +
-                    '<label>Planets</label>' +
-                '</div>' +
-                '<div class="check">' +
-                    '<input type="checkbox" quereaze="species">' +
-                    '<label>Species</label>' +
-                '</div>' +
-                '<div class="check">' +
-                    '<input type="checkbox" quereaze="starships">' +
-                    '<label>Starships</label>' +
-                '</div>' +
-                '<div class="check">' +
-                    '<input type="checkbox" quereaze="vehicles">' +
-                    '<label>Vehicles</label>' +
-                '</div>' +
-                '<button quereaze-submit>Submit</button>' +
-            '</div>'
-}
 function starDefaults () {
     return {
         people: false,
@@ -58,16 +26,7 @@ function starDefaults () {
         vehicles: false
     }
 }
-function searchTemplate () {
-    return '<h1>Searching Quereaze</h1>' +
-            '<div class="searchControls">' +
-                '<input type="text"   quereaze="q" placeholder="What are you looking for?">' +
-                '<input type="number" quereaze="minPrice" placeholder="Minimum Price">' +
-                '<input type="number" quereaze="maxPrice" placeholder="Maximum Price">' +
-                '<input type="number" quereaze="categoryGroupId" placeholder="Category Id">' +
-                '<button quereaze-submit>Submit</button>' +
-            '</div>'
-}
+
 function searchDefaults () {
     return {
         q: "",

@@ -29,9 +29,9 @@ USAGE
 4. Submit On Click (Optional)
     `<button quereaze-submit>Submit</button>`
 
-The quereaze-submit element is optional.
-This is because all the quereaze elements
-are wired with [rxjs.Observable]() sequences.
+The `quereaze-submit` element is optional.
+This is because all the `quereaze` elements
+are wired with [rxjs.Observable](https://github.com/ReactiveX/rxjs) sequences.
 These sequences emit the new query params 
 whenever the `enter` key is pressed.
 
@@ -61,8 +61,8 @@ whenever the `enter` key is pressed.
     // PARAMS WILL BE RETURNED INSTEAD
     var QuereazeComponent = RenderQuereaze({
         root: document.getElementById("root"),
-        template: require("./template.html"),
         defaults: DEFAULT_PARAMS,
+        template: require("./template.html"), // TEMPLATE
         onXhrReqCb: onXhrReqCb // OPTIONAL
     })
 

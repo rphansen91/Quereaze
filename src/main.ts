@@ -12,8 +12,8 @@ import { BuildSubmitr, BuildEditors } from './builders.ts';
 
 interface CtorQuereaze {
     root: HTMLElement;
-    template: string;
     defaults: any;
+    template?: string;
     onXhrReqCb?: (params: any)=>Request
 }
 
@@ -24,7 +24,9 @@ interface QuereazeResponse {
 
 export const RenderQuereaze = (ctor: CtorQuereaze) => {
     
-    ctor.root.innerHTML = ctor.template; // ADD TEMPLATE
+    if (ctor.template) {
+        ctor.root.innerHTML = ctor.template; // ADD TEMPLATE
+    }
 
     let subscription;
     let submitr: HTMLElement = BuildSubmitr(ctor.root); // FIND ELEMENT WITH QUEREAZE-SUBMIT ATTRIBUTE

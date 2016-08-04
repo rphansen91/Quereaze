@@ -10,7 +10,6 @@ var StarXHRCallback = function (params) {
 
 RenderQuereaze({
     root: document.getElementById('sWarsControls'), // ELEMENT TO RENDER QUERY UI
-    template: helpers.star.template, // TEMPLATE OF THE QUERY UI
     defaults: helpers.star.defaults, // THE DEFAULT PARAMS FOR REQUEST
     onXhrReqCb: StarXHRCallback // CALLBACK RECIEVES CURRENT PARAMS AND RETURNS THE REQUEST BODY
 })
@@ -27,7 +26,6 @@ RenderQuereaze({
 
 RenderQuereaze({
     root: document.getElementById('searchControls'),
-    template: helpers.search.template,
     defaults: helpers.search.defaults,
 })
 (function (result) {

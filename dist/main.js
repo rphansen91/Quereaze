@@ -66,7 +66,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	var xhr_ts_1 = __webpack_require__(43);
 	var builders_ts_1 = __webpack_require__(44);
 	exports.RenderQuereaze = function (ctor) {
-	    ctor.root.innerHTML = ctor.template; // ADD TEMPLATE
+	    if (ctor.template) {
+	        ctor.root.innerHTML = ctor.template; // ADD TEMPLATE
+	    }
 	    var subscription;
 	    var submitr = builders_ts_1.BuildSubmitr(ctor.root); // FIND ELEMENT WITH QUEREAZE-SUBMIT ATTRIBUTE
 	    var editors = builders_ts_1.BuildEditors(ctor.root); // FIND ALL ELEMENTS WITH QUEREAZE ATTRIBUTE
@@ -85,9 +87,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	            subscription.unsubscribe();
 	        }
 	        if (ctor.onXhrReqCb) {
-	            if (subscription) {
-	                subscription.unsubscribe();
-	            }
 	            subscription = begin$
 	                .switchMap(function (params) { return xhr_ts_1.XHRRequest(ctor.onXhrReqCb(params)); })
 	                .scan(function (prevXhttp, currXhttp) {
