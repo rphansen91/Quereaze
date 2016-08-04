@@ -1,6 +1,6 @@
 {
   "name": "quereaze",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Easily build IO UI's that utilize Undo, History, and Abort Http Request Logic",
   "keywords": ["querying","IO","form","control","history","undo","rxjs","rx"],
   "author": "Ryan P Hansen",
@@ -25,5 +25,9 @@
     "ts-loader": "^0.8.2",
     "webpack": "^1.13.0",
     "webpack-dev-server": "^1.14.1"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/rphansen91/Quereaze/issues"
+  },
+  "homepage": "https://rphansen91.github.io/Quereaze/"
 }

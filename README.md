@@ -6,7 +6,7 @@ Quereaze
 
 [DEMO: https://rphansen91.github.io/Quereaze/](https://rphansen91.github.io/Quereaze/)
 -----------------------------------------------
-[GITHUB: https://github.com/rphansen91/Quereaze](https://rphansen91.github.io/Quereaze/)
+[GITHUB: https://github.com/rphansen91/Quereaze](https://github.com/rphansen91/Quereaze)
 -----------------------------------------------
 
 USAGE
