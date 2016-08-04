@@ -61,7 +61,9 @@
     "type": "git",
     "url": "https://github.com/rphansen91/Quereaze.git"
   },
-  "czConfig": {
-    "path": "node_modules/cz-conventional/changelog"
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    }
   }
 }
