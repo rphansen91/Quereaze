@@ -55,10 +55,10 @@ USAGE
     <!-- Specify editable params using attribute quereaze="paramKey" -->
     <!-- Use  type="text" if typeof defaultValue=string -->
     <input type="text" quereaze="paramKey" />
-    <!-- Use  type="text" if typeof defaultValue=number -->
-    <input type="text" quereaze="paramKey" />
-    <!-- Use  type="text" if typeof defaultValue=boolean -->
-    <input type="text" quereaze="paramKey" />
+    <!-- Use  type="number" if typeof defaultValue=number -->
+    <input type="number" quereaze="paramKey" />
+    <!-- Use  type="checkbox" if typeof defaultValue=boolean -->
+    <input type="checkbox" quereaze="paramKey" />
     <button>Submit</button>
 
 
