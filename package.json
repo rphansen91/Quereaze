@@ -1,7 +1,8 @@
 {
   "name": "quereaze",
-  "version": "1.0.7",
-  "description": "",
+  "version": "1.0.8",
+  "description": "Easily build IO UI's that utilize Undo, History, and Abort Http Request Logic",
+  "keywords": ["querying","IO","form","control","history","undo","rxjs","rx"],
   "author": "Ryan P Hansen",
   "license": "ISC",
   "main": "./dist/main.js",
