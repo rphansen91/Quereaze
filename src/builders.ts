@@ -1,6 +1,8 @@
 export const SUBMIT_ATTR = "quereaze-submit";
 export const QUEREAZE_ATTR = "quereaze";
 
+import { Editable } from './quereaze.ts';
+
 export const BuildSubmitr = (root: HTMLElement): HTMLElement => {
     return FlattenChildren(root)
     .filter(child => child["attributes"][SUBMIT_ATTR])
@@ -12,25 +14,26 @@ export const BuildEditors = (root: HTMLElement) => {
     .filter(child => child["attributes"])
     .filter(child => child["attributes"]["type"])
     .filter(child => child["attributes"][QUEREAZE_ATTR])
-    .map((child) => {
-        let defaultValue;
-        let relegatorCb;
-        if (child["attributes"]["type"]["value"] === "number") {
-            defaultValue = 0;
-            relegatorCb = () => { return Number(child.value) || defaultValue; }
-        } else if (child["attributes"]["type"]["value"] === "checkbox") {
-            defaultValue = child["checked"];
-            relegatorCb = () => { return child["checked"]; }
-        } else {
-            defaultValue = "";
-            relegatorCb = () => { return child.value.trim() || defaultValue; }
+    .map((child) => createEditor(child))
+    .filter(editor => !!editor)
+}
+
+const createEditor = (element: HTMLElement): Editable => {
+    let key = element["attributes"][QUEREAZE_ATTR]["value"];
+    switch (element["attributes"]["type"]["value"]) {
+        case "text": return {
+            key, element, defaultValue: "",
+            relegatorCb: () => { return element["value"].trim() || ""; }
         }
-        return {
-            element: child,
-            key: child["attributes"][QUEREAZE_ATTR]["value"],
-            defaultValue, relegatorCb
+        case "number": return {
+            key, element, defaultValue: 0,
+            relegatorCb: () => { return Number(element["value"]) || 0; }
         }
-    })
+        case "checkbox": return {
+            key, element, defaultValue: element["checked"],
+            relegatorCb: () => { return element["checked"]; }
+        }
+    }
 }
 
 const FlattenChildren = (root) => {

@@ -2398,27 +2398,25 @@ return /******/ (function(modules) { // webpackBootstrap
 	        .filter(function (child) { return child["attributes"]; })
 	        .filter(function (child) { return child["attributes"]["type"]; })
 	        .filter(function (child) { return child["attributes"][exports.QUEREAZE_ATTR]; })
-	        .map(function (child) {
-	        var defaultValue;
-	        var relegatorCb;
-	        if (child["attributes"]["type"]["value"] === "number") {
-	            defaultValue = 0;
-	            relegatorCb = function () { return Number(child.value) || defaultValue; };
-	        }
-	        else if (child["attributes"]["type"]["value"] === "checkbox") {
-	            defaultValue = child["checked"];
-	            relegatorCb = function () { return child["checked"]; };
-	        }
-	        else {
-	            defaultValue = "";
-	            relegatorCb = function () { return child.value.trim() || defaultValue; };
-	        }
-	        return {
-	            element: child,
-	            key: child["attributes"][exports.QUEREAZE_ATTR]["value"],
-	            defaultValue: defaultValue, relegatorCb: relegatorCb
+	        .map(function (child) { return createEditor(child); })
+	        .filter(function (editor) { return !!editor; });
+	};
+	var createEditor = function (element) {
+	    var key = element["attributes"][exports.QUEREAZE_ATTR]["value"];
+	    switch (element["attributes"]["type"]["value"]) {
+	        case "text": return {
+	            key: key, element: element, defaultValue: "",
+	            relegatorCb: function () { return element["value"].trim() || ""; }
 	        };
-	    });
+	        case "number": return {
+	            key: key, element: element, defaultValue: 0,
+	            relegatorCb: function () { return Number(element["value"]) || 0; }
+	        };
+	        case "checkbox": return {
+	            key: key, element: element, defaultValue: element["checked"],
+	            relegatorCb: function () { return element["checked"]; }
+	        };
+	    }
 	};
 	var FlattenChildren = function (root) {
 	    return ChildArray(root)
