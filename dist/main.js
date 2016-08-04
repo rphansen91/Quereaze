@@ -2383,11 +2383,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 44 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	exports.SUBMIT_ATTR = "quereaze-submit";
 	exports.QUEREAZE_ATTR = "quereaze";
+	var types_ts_1 = __webpack_require__(45);
 	exports.BuildSubmitr = function (root) {
 	    return FlattenChildren(root)
 	        .filter(function (child) { return child["attributes"][exports.SUBMIT_ATTR]; })
@@ -2402,20 +2403,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	        .filter(function (editor) { return !!editor; });
 	};
 	var createEditor = function (element) {
-	    var key = element["attributes"][exports.QUEREAZE_ATTR]["value"];
+	    var editable = {
+	        element: element,
+	        key: element["attributes"][exports.QUEREAZE_ATTR]["value"]
+	    };
 	    switch (element["attributes"]["type"]["value"]) {
-	        case "text": return {
-	            key: key, element: element, defaultValue: "",
-	            relegatorCb: function () { return element["value"].trim() || ""; }
-	        };
-	        case "number": return {
-	            key: key, element: element, defaultValue: 0,
-	            relegatorCb: function () { return Number(element["value"]) || 0; }
-	        };
-	        case "checkbox": return {
-	            key: key, element: element, defaultValue: element["checked"],
-	            relegatorCb: function () { return element["checked"]; }
-	        };
+	        case "text": return Object.assign(editable, types_ts_1.stringType(element));
+	        case "number": return Object.assign(editable, types_ts_1.numberType(element));
+	        case "checkbox": return Object.assign(editable, types_ts_1.booleanType(element));
 	    }
 	};
 	var FlattenChildren = function (root) {
@@ -2431,6 +2426,25 @@ return /******/ (function(modules) { // webpackBootstrap
 	var ChildArray = function (root) {
 	    return [].slice.call(root.children);
 	};
+
+
+/***/ },
+/* 45 */
+/***/ function(module, exports) {
+
+	"use strict";
+	exports.numberType = function (element) { return ({
+	    defaultValue: 0,
+	    relegatorCb: function () { return Number(element["value"]) || 0; }
+	}); };
+	exports.stringType = function (element) { return ({
+	    defaultValue: "",
+	    relegatorCb: function () { return element["value"].trim() || ""; }
+	}); };
+	exports.booleanType = function (element) { return ({
+	    defaultValue: element["checked"],
+	    relegatorCb: function () { return element["checked"]; }
+	}); };
 
 
 /***/ }

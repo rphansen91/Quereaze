@@ -2,6 +2,7 @@ export const SUBMIT_ATTR = "quereaze-submit";
 export const QUEREAZE_ATTR = "quereaze";
 
 import { Editable } from './quereaze.ts';
+import { numberType, stringType, booleanType } from './types.ts';
 
 export const BuildSubmitr = (root: HTMLElement): HTMLElement => {
     return FlattenChildren(root)
@@ -19,20 +20,14 @@ export const BuildEditors = (root: HTMLElement) => {
 }
 
 const createEditor = (element: HTMLElement): Editable => {
-    let key = element["attributes"][QUEREAZE_ATTR]["value"];
+    const editable = {
+        element,
+        key: element["attributes"][QUEREAZE_ATTR]["value"]
+    }
     switch (element["attributes"]["type"]["value"]) {
-        case "text": return {
-            key, element, defaultValue: "",
-            relegatorCb: () => { return element["value"].trim() || ""; }
-        }
-        case "number": return {
-            key, element, defaultValue: 0,
-            relegatorCb: () => { return Number(element["value"]) || 0; }
-        }
-        case "checkbox": return {
-            key, element, defaultValue: element["checked"],
-            relegatorCb: () => { return element["checked"]; }
-        }
+        case "text": return Object.assign(editable, stringType(element));
+        case "number": return Object.assign(editable, numberType(element))
+        case "checkbox": return Object.assign(editable, booleanType(element))
     }
 }
 
