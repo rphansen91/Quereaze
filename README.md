@@ -18,20 +18,16 @@ USAGE
 > Template type syntax
 
 1. String: (defaultValue = "")
-
-    <input type="text" quereaze="paramKey" />
+    `<input type="text" quereaze="paramKey" />`
 
 2. Number: (defaultValue = 0)
-
-    <input type="number" quereaze="paramKey" />
+    `<input type="number" quereaze="paramKey" />`
 
 3. Boolean: (defaultValue = false)
-    
-    <input type="checkbox" quereaze="paramKey" />
+    `<input type="checkbox" quereaze="paramKey" />`
 
 4. Submit On Click (Optional)
-    
-    <button quereaze-submit>Submit</button>
+    `<button quereaze-submit>Submit</button>`
 
 The quereaze-submit element is optional.
 This is because all the quereaze elements
