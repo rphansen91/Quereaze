@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Quereaze</title>
+        <style>
+            * {font-family: Brown; text-align: center; color: #efefef;}
+            body {
+                background-color: rgba(41,41,41,1); 
+                background-image: linear-gradient(to right, rgba(41,41,41,0) 0%, rgba(41,41,41,0.8) 25%, rgba(41,41,41,0.9) 50%, rgba(41,41,41,0.8) 75%, rgba(41,41,41,0) 100%); 
+                background-size: cover;
+                background-attachment: fixed;
+                margin: 0;
+            }
+            .wrapper {position: absolute; left: 0; right: 0; margin: 20px auto; max-width: 60em;}
+            .searchControls {display: flex; margin-bottom: 20px; flex-wrap: wrap;}
+            .searchControls input {flex: 4;font-size: 20px; border: none; outline: none; background-color: rgba(255,255,255,0.2); height: 60px;}
+            .sWarsControls button,.searchControls button {flex: 1;font-size: 20px; border: none; outline: none; background-color: rgba(255,255,255,0.4); line-height: 50px; transition: opacity 0.2s ease;cursor: pointer;}
+            button:hover {opacity: 0.6;}
+
+            .sWarsControls {display: flex; margin-bottom: 20px; flex-wrap: wrap;}
+            .sWarsControls .check {flex: 4;min-width: 100px;height: 60px;}
+            .check label {line-height: 60px;}
+        </style>
+    </head>
+    <body>
+        <div class="wrapper">
+            <div id="sWarsControls"></div>
+            <div id="sWarsResults"></div>
+            <div id="searchControls"></div>
+            <div id="searchResults"></div>
+        </div>
+
+        <script src="./dist/main.js"></script>
+        
+        <script src="./example/helpers.js"></script>
+        <script src="./example/example.js"></script>
+    </body>
+</html>
