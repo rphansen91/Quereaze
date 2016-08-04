@@ -51,7 +51,6 @@ export const RenderQuereaze = (ctor: CtorQuereaze) => {
         if (subscription) { subscription.unsubscribe(); }
 
         if (ctor.onXhrReqCb) {
-        if (subscription) { subscription.unsubscribe(); }
             subscription = begin$
             .switchMap((params) => XHRRequest(ctor.onXhrReqCb(params)))
             .scan((prevXhttp, currXhttp) => {
