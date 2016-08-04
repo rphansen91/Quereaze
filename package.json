@@ -36,6 +36,7 @@
     "commitizen": "^2.8.4",
     "cz-conventional-changelog": "^1.1.6",
     "expect": "^1.20.1",
+    "ghooks": "^1.3.2",
     "istanbul": "^0.4.4",
     "istanbul-instrumenter-loader": "^0.2.0",
     "karma": "^1.1.2",
@@ -51,9 +52,9 @@
     "raw-loader": "^0.5.1",
     "semantic-release": "^4.3.5",
     "ts-loader": "^0.8.2",
+    "typescript": "1.8.9",
     "webpack": "^1.13.0",
-    "webpack-dev-server": "^1.14.1",
-    "typescript": "1.8.9"
+    "webpack-dev-server": "^1.14.1"
   },
   "bugs": {
     "url": "https://github.com/rphansen91/Quereaze/issues"
@@ -64,6 +65,9 @@
     "url": "https://github.com/rphansen91/Quereaze.git"
   },
   "config": {
+    "ghooks": {
+      "pre-commit": "npm run test:single"
+    },
     "commitizen": {
       "path": "node_modules/cz-conventional-changelog"
     }
