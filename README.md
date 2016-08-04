@@ -1,9 +1,12 @@
+Quereaze
 
 > Easily build **IO UI's** that utilize `Undo, History, and Abort Http Request Logic`.
 > Simple html syntax combined with declaritive typing allow the library to keep a
 > **memoized** history of parameters.
 
-![DEMO](https://rphansen91.github.io/Quereaze/)
+[DEMO: https://rphansen91.github.io/Quereaze/](https://rphansen91.github.io/Quereaze/)
+-----------------------------------------------
+[GITHUB: https://github.com/rphansen91/Quereaze](https://rphansen91.github.io/Quereaze/)
 -----------------------------------------------
 
 USAGE
