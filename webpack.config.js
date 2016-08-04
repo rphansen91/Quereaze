@@ -1,7 +1,7 @@
 var webpack = require('webpack');
 
 var config = {
-    entry: "./example/example.ts",
+    entry: "./src/main.ts",
     output: {
         path: "./dist",
         filename: "main.js",

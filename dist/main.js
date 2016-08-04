@@ -65,39 +65,53 @@ return /******/ (function(modules) { // webpackBootstrap
 	var quereaze_ts_1 = __webpack_require__(42);
 	var xhr_ts_1 = __webpack_require__(43);
 	var builders_ts_1 = __webpack_require__(44);
-	exports.RenderQuereaze = function (root, template, defaults, onXhrReqCb) {
-	    root.innerHTML = template; // ADD TEMPLATE
+	exports.RenderQuereaze = function (ctor) {
+	    ctor.root.innerHTML = ctor.template; // ADD TEMPLATE
 	    var subscription;
-	    var submitr = builders_ts_1.BuildSubmitr(root); // FIND ELEMENT WITH QUEREAZE-SUBMIT ATTRIBUTE
-	    var editors = builders_ts_1.BuildEditors(root); // FIND ALL ELEMENTS WITH QUEREAZE ATTRIBUTE
-	    var invalid = editors.filter(function (editor) { return defaults[editor.key] !== editor.defaultValue; }); // VERIFY DEFAULTS
-	    var quereaze = new quereaze_ts_1.Quereaze(defaults, editors);
+	    var submitr = builders_ts_1.BuildSubmitr(ctor.root); // FIND ELEMENT WITH QUEREAZE-SUBMIT ATTRIBUTE
+	    var editors = builders_ts_1.BuildEditors(ctor.root); // FIND ALL ELEMENTS WITH QUEREAZE ATTRIBUTE
+	    var invalid = editors.filter(function (editor) { return ctor.defaults[editor.key] !== editor.defaultValue; }); // VERIFY DEFAULTS
+	    var quereaze = new quereaze_ts_1.Quereaze(ctor.defaults, editors);
 	    if (invalid && invalid.length) {
-	        root.innerHTML = "The following template editors, '" + invalid.reduce(function (p, c) { return c["key"] + ", " + p; }, "") + "' do not have the correct default types";
-	        throw new Error(root.innerHTML);
+	        ctor.root.innerHTML = "The following template editors, '" + invalid.reduce(function (p, c) { return c["key"] + ", " + p; }, "") + "' do not have the correct default types";
+	        throw new Error(ctor.root.innerHTML);
 	    }
+	    var begin$ = Observable_1.Observable.merge.apply(Observable_1.Observable, [Observable_1.Observable.fromEvent(submitr, 'click')].concat(editors.map(function (editor) { return OnEnter(editor.element); })))
+	        .map(function () { return quereaze.relegate(); }) // RETRIEVE CURRENT VALUES
+	        .map(function (p) { return quereaze.setParameters(p); }) // UPDATE STORED PARAMS
+	        .map(function () { return quereaze.current(); }); // RETRIEVE STORED PARAMS
 	    return function (onResultCb) {
 	        if (subscription) {
 	            subscription.unsubscribe();
 	        }
-	        subscription = Observable_1.Observable.merge.apply(Observable_1.Observable, [Observable_1.Observable.fromEvent(submitr, 'click')].concat(editors.map(function (editor) { return OnEnter(editor.element); })))
-	            .map(function () { return quereaze.relegate(); }) // RETRIEVE CURRENT VALUES
-	            .map(function (p) { return quereaze.setParameters(p); }) // UPDATE STORED PARAMS
-	            .map(function () { return quereaze.current(); }) // RETRIEVE STORED PARAMS
-	            .switchMap(function (params) { return xhr_ts_1.XHRRequest(onXhrReqCb(params)); })
-	            .scan(function (prevXhttp, currXhttp) {
-	            // BIG WIN AT THIS STEP
-	            // CANCEL ANY OUTSTANDING HTTP REQUESTS
-	            if (prevXhttp) {
-	                prevXhttp.abort();
+	        if (ctor.onXhrReqCb) {
+	            if (subscription) {
+	                subscription.unsubscribe();
 	            }
-	            return currXhttp;
-	        }, null)
-	            .switchMap(function (res) { return xhr_ts_1.XHRResponse(res); })
-	            .map(function (res) { return ({
-	            data: res.json(),
-	            quereaze: quereaze
-	        }); }).subscribe(function (res) { return onResultCb(res); });
+	            subscription = begin$
+	                .switchMap(function (params) { return xhr_ts_1.XHRRequest(ctor.onXhrReqCb(params)); })
+	                .scan(function (prevXhttp, currXhttp) {
+	                // BIG WIN AT THIS STEP
+	                // CANCEL ANY OUTSTANDING HTTP REQUESTS
+	                if (prevXhttp) {
+	                    prevXhttp.abort();
+	                }
+	                return currXhttp;
+	            }, null)
+	                .switchMap(function (res) { return xhr_ts_1.XHRResponse(res); })
+	                .map(function (res) { return ({
+	                data: res.json(),
+	                quereaze: quereaze
+	            }); })
+	                .subscribe(function (res) { return onResultCb(res); });
+	        }
+	        else {
+	            subscription = begin$.map(function (res) { return ({
+	                data: res,
+	                quereaze: quereaze
+	            }); })
+	                .subscribe(function (res) { return onResultCb(res); });
+	        }
 	    };
 	};
 	var OnEnter = function (element) {

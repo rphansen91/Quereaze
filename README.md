@@ -1,9 +1,6 @@
-QUEREAZE
-========
-
-Easily build UI's that query endpoints with **memoized** parameters.
-This makes it trivial to create complex search **IO's** with out of the box
-advanced features such as `Undo, History, and Abort Http Request Logic`
+Easily build **IO UI's** that utilize `Undo, History, and Abort Http Request Logic`.
+Simple html syntax combined with declaritive typing allow the library to keep
+a running **memoized** history of parameters.
 
 USAGE
 -----
@@ -19,7 +16,7 @@ USAGE
         // ...params used to query API
     }
 
-    function onHttpCallback (newParams) {
+    function onXhrReqCb (newParams) {
         // newParams: Same structure as DEFAULT_PARAMS 
         // but with updated data provided in template.html
         return {
@@ -29,33 +26,29 @@ USAGE
         }
     }
 
-    var renderedQuereaze = RenderQuereaze(
-        document.getElementById("root"),
-        require("./template.html"),
-        DEFAULT_PARAMS,
-        onHttpCallback
-    )
-    
-    // REQUESTS WONT FIRE UNTIL CALLBACK SUPPLIED
-    renderedQuereaze(function (response) {
+    RenderQuereaze({
+        root: document.getElementById("root"),
+        template: require("./template.html"),
+        defaults: DEFAULT_PARAMS,
+        onXhrReqCb: onXhrReqCb // IF THIS IS NOT SPECIFIED PARAMS WILL BE RETURNED INSTEAD
+    )(({ data, quereaze }) => {
         // IF SUCCESSFUL SAVE PARAMS
-        response.quereaze.save()
-        console.log(response.quereaze.history)
+        quereaze.save()
+        console.log(quereaze.history) // Memoized history of successful params
 
-        // THE JSON RESPONSE IS ACCESSIBLE 
-        // THROUGH THE DATA KEY
-        console.log(response.data)
+        // THE JSON RESPONSE IS ACCESSIBLE THROUGH THE DATA
+        console.log(data)
     })
 
 > template.html
 
-    <!-- Specify editable params using attribute quereaze="{{paramKey}}" -->
+    <!-- Specify editable params using attribute quereaze="paramKey" -->
     <!-- Use  type="text" if typeof defaultValue=string -->
-    <input type="text" quereaze="{{paramKey}}" />
+    <input type="text" quereaze="paramKey" />
     <!-- Use  type="text" if typeof defaultValue=number -->
-    <input type="text" quereaze="{{paramKey}}" />
+    <input type="text" quereaze="paramKey" />
     <!-- Use  type="text" if typeof defaultValue=boolean -->
-    <input type="text" quereaze="{{paramKey}}" />
+    <input type="text" quereaze="paramKey" />
     <button>Submit</button>
 
 IMPORTANT
