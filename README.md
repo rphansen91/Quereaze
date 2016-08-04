@@ -14,6 +14,31 @@ USAGE
 
 `npm install quereaze -S`
 
+
+> Template type syntax
+
+1. String: (defaultValue = "")
+
+    <input type="text" quereaze="paramKey" />
+
+2. Number: (defaultValue = 0)
+
+    <input type="number" quereaze="paramKey" />
+
+3. Boolean: (defaultValue = false)
+    
+    <input type="checkbox" quereaze="paramKey" />
+
+4. Submit On Click (Optional)
+    
+    <button quereaze-submit>Submit</button>
+
+The quereaze-submit element is optional.
+This is because all the quereaze elements
+are wired with [rxjs.Observable]() sequences.
+These sequences emit the new query params 
+whenever the `enter` key is pressed.
+
 > main.js
 
     import { RenderQuereaze } from 'quereaze'
@@ -26,6 +51,9 @@ USAGE
     function onXhrReqCb (newParams) {
         // newParams: Same structure as DEFAULT_PARAMS 
         // but with updated data provided in template.html
+        newParams["custom1"] = "value1";
+        newParams["custom2"] = "value2";
+
         return {
             method: "POST"|"GET"|"PUT"|"DELETE",
             url: ENDPOINT,
@@ -35,12 +63,20 @@ USAGE
 
     // IF onXhrReqCb IS NOT SPECIFIED 
     // PARAMS WILL BE RETURNED INSTEAD
-    RenderQuereaze({
+    var QuereazeComponent = RenderQuereaze({
         root: document.getElementById("root"),
         template: require("./template.html"),
         defaults: DEFAULT_PARAMS,
-        onXhrReqCb: onXhrReqCb
-    )(({ data, quereaze }) => {
+        onXhrReqCb: onXhrReqCb // OPTIONAL
+    })
+
+    // COMPONENT CALLBACK FUNCTION
+    // WILL NOT FIRE REQUESTS UNTIL CB SUPPLIED
+    // CALLED WHEN:
+        // 1. NEW PARAMS SUBMITED
+        // 2. XHR REQUEST HAS FINISHED (if supplied)
+        
+    QuereazeComponent(({ data, quereaze }) => {
         // IF SUCCESSFUL SAVE PARAMS
         quereaze.save()
         console.log(quereaze.history) // Memoized history of successful params
@@ -49,26 +85,12 @@ USAGE
         console.log(data)
     })
 
+If the `defaults` specified do not match the defaultValues of the types 
+found in the template an error will be thrown.
 
-> template.html
+It is also possible to make custom type additions
+to build valid requests in the `onXhrReqCb` handler.
 
-    <!-- Specify editable params using attribute quereaze="paramKey" -->
-    <!-- Use  type="text" if typeof defaultValue=string -->
-    <input type="text" quereaze="paramKey" />
-    <!-- Use  type="number" if typeof defaultValue=number -->
-    <input type="number" quereaze="paramKey" />
-    <!-- Use  type="checkbox" if typeof defaultValue=boolean -->
-    <input type="checkbox" quereaze="paramKey" />
-    <button>Submit</button>
-
-
-
-IMPORTANT
----------
-
-If the defaultValues specified do not match the defaultValues of the types 
-found in the template an error will be thrown. This can be resolved by specifying 
-the correct input type.
-
-If allowed input types do not specify your needs then custom param relegations can
-be made in the onHttpCallback handler
+These custom additions will also be `memoized` and
+stored when `quereaze.save()` is called in the
+`QuereazeComponent` callback handler.
