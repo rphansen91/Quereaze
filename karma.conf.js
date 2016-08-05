@@ -28,9 +28,9 @@ module.exports = function (config) {
     reporters: ['progress','coverage'],
     coverageReporter: {
       type: 'json',
-      dir: 'reports',
-      subdir: 'coverage',
-      file: 'coverage-final.json'
+      dir: 'coverage',
+      subdir: 'report',
+      file: 'coverage.json'
     },
     port: 9876,
     colors: true,
