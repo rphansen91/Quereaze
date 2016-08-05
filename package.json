@@ -18,7 +18,7 @@
   "scripts": {
     "test": "karma start",
     "test:single": "karma start --single-run",
-    "check-coverage": "istanbul check-coverage --statements 39 --branches 20 --functions 10 --lines 40",
+    "check-coverage": "istanbul check-coverage --statements 44 --branches 34 --functions 23 --lines 44",
     "report-coverage": "cat ./coverage/reports/lcov.info | codecov",
     "start": "webpack-dev-server",
     "build": "rm -Rf dist && NODE_ENV=production webpack",

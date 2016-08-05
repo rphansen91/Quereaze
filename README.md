@@ -3,7 +3,7 @@
 [![Travis](https://img.shields.io/travis/rphansen91/Quereaze.svg?maxAge=2592000&style=flat-square)](https://travis-ci.org/rphansen91/Quereaze)
 [![Code Coverage](https://img.shields.io/codecov/c/github/rphansen91/Quereaze/master.svg?maxAge=2592000&style=flat-square)](https://codecov.io/github/rphansen91/Quereaze)
 [![version](https://img.shields.io/npm/v/quereaze.svg?style=flat-square)](https://www.npmjs.com/package/quereaze)
-[![downloads](https://img.shields.io/npm/dm/quereaze.svg?style=flat-square)](http://npm-stat.com/charts.html?package=starwars-names&from=2015-08-01)
+[![downloads](https://img.shields.io/npm/dm/quereaze.svg?style=flat-square)](http://npm-stat.com/charts.html?package=quereaze&from=2016-08-01)
 [![ISC License](https://img.shields.io/npm/l/quereaze.svg?style=flat-square)](http://opensource.org/licenses/ISC)
 
 > Easily build **IO UI's** that utilize `Undo, History, and Abort Http Request Logic`.
