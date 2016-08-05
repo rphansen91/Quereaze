@@ -18,7 +18,7 @@
   "scripts": {
     "test": "karma start",
     "test:single": "karma start --single-run",
-    "check-coverage": "istanbul check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
+    "check-coverage": "istanbul check-coverage --statements 39 --branches 20 --functions 10 --lines 40",
     "start": "webpack-dev-server",
     "build": "rm -Rf dist && NODE_ENV=production webpack",
     "commit": "git-cz",
@@ -66,7 +66,7 @@
   },
   "config": {
     "ghooks": {
-      "pre-commit": "npm run test:single"
+      "pre-commit": "npm run test:single && npm run check-coverage"
     },
     "commitizen": {
       "path": "node_modules/cz-conventional-changelog"
