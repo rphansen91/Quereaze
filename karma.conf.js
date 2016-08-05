@@ -27,10 +27,10 @@ module.exports = function (config) {
     },
     reporters: ['progress','coverage'],
     coverageReporter: {
-      type: 'json',
-      dir: 'coverage',
-      subdir: 'report',
-      file: 'coverage.json'
+      reporters:[
+        {type: 'lcovonly',dir: 'coverage',subdir: 'report'},
+        {type: 'json',dir: 'coverage',subdir: 'report'}
+      ]
     },
     port: 9876,
     colors: true,
