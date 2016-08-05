@@ -28,8 +28,8 @@ module.exports = function (config) {
     reporters: ['progress','coverage'],
     coverageReporter: {
       reporters:[
-        {type: 'lcovonly',dir: 'coverage',subdir: 'report'},
-        {type: 'json',dir: 'coverage',subdir: 'report'}
+        {type: 'lcovonly',dir: 'coverage',subdir: 'reports'},
+        {type: 'json',dir: 'coverage',subdir: 'reports'}
       ]
     },
     port: 9876,
