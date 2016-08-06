@@ -93,7 +93,7 @@ IO
     import { QuereazeIO } from 'quereaze';
 
     QuereazeIO({
-        ...Constructor //[Documented above](#constructor)
+        ...Constructor
     })
     ({
         onSubmit: ({ data, quereaze }) => {
@@ -111,13 +111,13 @@ to update the UI as needed.
 The `quereaze.history` Array also allows for a dead simple
 integration of History or Undo actions.
 
-Http
+HTTP
 ---- 
 
     import { QuereazeHttp } from 'quereaze';
 
     QuereazeHttp({
-        ...Constructor //[Documented above](#constructor)
+        ...Constructor
     })
     ({
         onSubmit: (params) => {
