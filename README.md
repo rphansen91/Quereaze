@@ -1,7 +1,7 @@
-#Quereaze
+##Quereaze
 
-[![Travis](https://img.shields.io/travis/rphansen91/Quereaze.svg?maxAge=2592000&style=flat-square)](https://travis-ci.org/rphansen91/Quereaze)
-[![Code Coverage](https://img.shields.io/codecov/c/github/rphansen91/Quereaze/master.svg?maxAge=2592000&style=flat-square)](https://codecov.io/github/rphansen91/Quereaze)
+[![Travis](https://img.shields.io/travis/rphansen91/Quereaze.svg?style=flat-square)](https://travis-ci.org/rphansen91/Quereaze)
+[![Code Coverage](https://img.shields.io/codecov/c/github/rphansen91/Quereaze/master.svg?style=flat-square)](https://codecov.io/github/rphansen91/Quereaze)
 [![version](https://img.shields.io/npm/v/quereaze.svg?style=flat-square)](https://www.npmjs.com/package/quereaze)
 [![downloads](https://img.shields.io/npm/dm/quereaze.svg?style=flat-square)](http://npm-stat.com/charts.html?package=quereaze&from=2016-08-01)
 [![ISC License](https://img.shields.io/npm/l/quereaze.svg?style=flat-square)](http://opensource.org/licenses/ISC)
@@ -10,8 +10,10 @@
 > Simple html syntax combined with declaritive typing allow the library to keep a
 > **memoized** history of parameters.
 
-[GITHUB](https://github.com/rphansen91/Quereaze) [DEMO](https://rphansen91.github.io/Quereaze/) 
------------------------------------------------------------------------------------------------
+[GITHUB](https://github.com/rphansen91/Quereaze)
+================= 
+[DEMO](https://rphansen91.github.io/Quereaze/) 
+=================
 
 Table of contents
 =================
@@ -20,23 +22,21 @@ Table of contents
   * [Installation](#installation)
   * [Usage](#usage)
     * [Constructor](#constructor)
-        * [Root](#root)
-        * [Defaults](#defaults)
-        * [Template](#template)
-    * [QuereazeIO](#QuereazeIO)
-    * [QuereazeHttp](#QuereazeHttp)
+    * [IO](#io)
+    * [Http](#http)
   * [Conclusion](#conclusion)
   * [Dependencies](#dependencies)
 
 Installation
-------------
+============
 
 `npm install quereaze -S`
 
 Usage
------
+=====
 
-## Constructor - (QuereazeIO and QuereazeHttp)
+Constructor
+-----------
 
     * root: HTMLElement
     * defaults: JS Object describing parameters
@@ -85,20 +85,21 @@ template do not === the default values.
 Once the constructor has been created it is sent of to one of the Quereaze 
 sequences below to be wired up.
 
-## QuereazeIO - Form Only
+IO
+--
 
-import { QuereazeIO } from 'Quereaze';
+    import { QuereazeIO } from 'Quereaze';
 
-QuereazeIO({
-    ...Constructor
-})
-({
-    onSubmit: ({ data, quereaze }) => {
-        quereaze.save()
-        quereaze.history; //Array of all submitted params
-        data // Current 
-    }
-})
+    QuereazeIO({
+        ...Constructor
+    })
+    ({
+        onSubmit: ({ data, quereaze }) => {
+            quereaze.save()
+            quereaze.history; //Array of all submitted params
+            data // Current 
+        }
+    })
 
 With the simple declaritive syntax Quereaze is able to keep 
 params synced and alert the onSubmit handler. All of the 
@@ -108,37 +109,38 @@ to update the UI as needed.
 The `quereaze.history` Array also allows for a dead simple
 integration of History or Undo actions.
 
-## QuereazeHttp - Form and HTTP 
+Http
+---- 
 
-import { QuereazeHttp } from 'Quereaze';
+    import { QuereazeHttp } from 'Quereaze';
 
-QuereazeHttp({
-    ...constructor
-})
-({
-    onSubmit: (params) => {
-        // Show Loader
-        return {
-            method: "GET"|"POST"|"PUT"|"DELETE",
-            url: "", // Enpoint, params available to construct
-            body: params // Make changes to params if needed
-        }
-    },
+    QuereazeHttp({
+        ...constructor
+    })
+    ({
+        onSubmit: (params) => {
+            // Show Loader
+            return {
+                method: "GET"|"POST"|"PUT"|"DELETE",
+                url: "", // Enpoint, params available to construct
+                body: params // Make changes to params if needed
+            }
+        },
 
-    onSuccess: ({ data, quereaze }) => {
-        // Stop Loader
-        // Display response data
-    },
+        onSuccess: ({ data, quereaze }) => {
+            // Stop Loader
+            // Display response data
+        },
 
-    onError: (err) => console.log(err)
-})
+        onError: (err) => console.log(err)
+    })
 
 With two additional handlers Quereaze is able to not only
 keep form parameters in sync but also fire XHR responses
 to a specified endpoints.
 
 Conclusion
-----------
+==========
 
 The days of manually interacting with the DOM are long gone.
 Browsers API's are constantly changing and deprecating
@@ -159,6 +161,6 @@ chronological sequence of events which is much
 easier to reason with.
 
 Dependencies
-------------
+============
 
-- rxjs
+- [rxjs](https://www.npmjs.com/package/rxjs)
