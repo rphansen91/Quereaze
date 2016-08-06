@@ -38,6 +38,8 @@ Usage
 Constructor
 -----------
 
+> Used as constructor for [`QuereazeIO`](#io) and [`QuereazeHttp`](#http)
+
     * root: HTMLElement
     * defaults: JS Object describing parameters
     * template: Optional, can be supplied in constructor or inline with root
