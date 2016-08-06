@@ -18,7 +18,7 @@
   "scripts": {
     "test": "karma start",
     "test:single": "karma start --single-run",
-    "check-coverage": "istanbul check-coverage --statements 44 --branches 34 --functions 23 --lines 44",
+    "check-coverage": "istanbul check-coverage --statements 85 --branches 78 --functions 80 --lines 85",
     "report-coverage": "cat ./coverage/reports/lcov.info | codecov",
     "start": "webpack-dev-server",
     "build": "rm -Rf dist && NODE_ENV=production webpack",
@@ -54,6 +54,7 @@
     "phantomjs-prebuilt": "^2.1.10",
     "raw-loader": "^0.5.1",
     "semantic-release": "^4.3.5",
+    "sinon": "^1.17.5",
     "ts-loader": "^0.8.2",
     "typescript": "1.8.9",
     "webpack": "^1.13.0",

@@ -34,7 +34,7 @@ const createEditor = (element: HTMLElement): Editable => {
 const FlattenChildren = (root) => {
     return ChildArray(root)
     .map(child => {
-        if (child.children.length) { return FlattenChildren(child); }
+        if (child.children && child.children.length) { return FlattenChildren(child); }
         return child;
     })
     .reduce((p,c) => [...p, ...c], [])

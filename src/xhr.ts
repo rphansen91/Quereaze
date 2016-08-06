@@ -30,7 +30,7 @@ export const XHRResponse = (request: XMLHttpRequest): Observable<Response> => {
     })
 }
 
-const ResponseObject = (text: string):Response => ({
+export const ResponseObject = (text: string):Response => ({
     text: ()=>text,
     json: ()=>{
         try {

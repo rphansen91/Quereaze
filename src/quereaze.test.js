@@ -6,7 +6,12 @@ describe('Quereaze', () => {
     const defaults = {
         q: "", min: 0, max: 0, cat: 0, hasPhoto: false
     }
-    var querier = new Quereaze(defaults)
+    const editables = [
+        { key: "q", relegatorCb: () => "set string" },
+        { key: "min", relegatorCb: () => 100 },
+        { key: "hasPhoto", relegatorCb: () => true },
+    ]
+    var querier = new Quereaze(defaults, editables)
 
     it('should be present', () => {
         expect(querier).to.be.defined;
@@ -48,6 +53,21 @@ describe('Quereaze', () => {
                 let fn = querier.setParameters.bind(querier, {hasPhoto: 0})
                 expect(fn).to.throw(Error)
             })
+        })
+    })
+    describe('Param relegation', () => {
+        var obj = querier.relegate();
+        it('should relegate all values from editables', () => {
+            expect(obj).to.have.all.keys('q', 'min', 'hasPhoto');
+        })
+        it('should relegate string values', () => {
+            expect(obj.q).to.equal("set string")
+        })
+        it('should relegate number values', () => {
+            expect(obj.min).to.equal(100)
+        })
+        it('should relegate boolean values', () => {
+            expect(obj.hasPhoto).to.be.true;
         })
     })
     describe('Historical Params', () => {

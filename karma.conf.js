@@ -28,7 +28,7 @@ module.exports = function (config) {
     reporters: ['progress','coverage'],
     coverageReporter: {
       reporters:[
-        {type: 'lcovonly',dir: 'coverage',subdir: 'reports'},
+        {type: 'lcov',dir: 'coverage',subdir: 'reports'},
         {type: 'json',dir: 'coverage',subdir: 'reports'}
       ]
     },
