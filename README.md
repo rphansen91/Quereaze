@@ -88,10 +88,10 @@ sequences below to be wired up.
 IO
 --
 
-    import { QuereazeIO } from 'Quereaze';
+    import { QuereazeIO } from 'quereaze';
 
     QuereazeIO({
-        ...Constructor
+        ...Constructor //[Documented above](#constructor)
     })
     ({
         onSubmit: ({ data, quereaze }) => {
@@ -112,10 +112,10 @@ integration of History or Undo actions.
 Http
 ---- 
 
-    import { QuereazeHttp } from 'Quereaze';
+    import { QuereazeHttp } from 'quereaze';
 
     QuereazeHttp({
-        ...constructor
+        ...Constructor //[Documented above](#constructor)
     })
     ({
         onSubmit: (params) => {
